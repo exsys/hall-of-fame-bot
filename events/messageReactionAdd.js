@@ -15,7 +15,7 @@ module.exports = {
         const msgId = message.id;
 
         let reactionCount = msgReaction.count;
-        // if for whatever unexpected 
+        // if for whatever unexpected reason msgReaction doesn't exist.
         if(!reactionCount) {
             msgReaction.message.channel.send("Unknown error. Call Exsys and tell him he coded trash.");
             return;
