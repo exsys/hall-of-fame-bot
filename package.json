@@ -1,0 +1,25 @@
+{
+  "name": "hall-of-fame-bot",
+  "version": "1.0.0",
+  "description": "Hall of Fame Bot that allows you to eternalise the messages of users in your server.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "Exsys",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "config.json",
+      "storage/*"
+    ]
+  }
+}
