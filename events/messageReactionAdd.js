@@ -11,6 +11,7 @@ module.exports = {
     name: "messageReactionAdd",
     async execute(msgReaction, user) {
         if (msgReaction.emoji.name !== "⭐") return; // only check star reactions
+        if (config.hof_channel && msgReaction.message.channel.id === config.hof_channel) return;
         const message = await msgReaction.message;
         const msgId = message.id;
 
