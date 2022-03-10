@@ -15,8 +15,8 @@ module.exports = {
             msg.reply(`1 argument expected but ${args.length} were given. Correct usage: \`${config.prefix}${this.name} [message id]\``);
             return;
         }
+        
         const hof_channel = config.hof_channel;
-        // check if hall of fame channel was already created
         if (!hof_channel) {
             msg.channel.send("No existing Hall of Fame channel found. Couldn't add post.");
             return;
