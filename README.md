@@ -9,6 +9,7 @@ The amount of ⭐ reactions needed can be changed.
 
 To make the Bot work you need a config.json file in the root directory with following structure:
 
+```
 {
     "prefix": "!!",
     "reactions_needed": 2,
@@ -16,6 +17,7 @@ To make the Bot work you need a config.json file in the root directory with foll
         "475003987540836393"
     ]
 }
+```
 
 You need to have atleast one role in the admin array or else most commands won't work.
 Either that or you have to change the adminOnly boolean in all commands to false, so everybody can use all commands.
