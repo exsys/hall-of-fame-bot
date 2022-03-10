@@ -6,7 +6,7 @@ const writeFileAsync = promisify(fs.writeFile);
 
 module.exports = {
     name: "unbind",
-    description: "Unbinds a channel from being the Hall of Fame.",
+    description: "Removes the Hall of Fame.",
     usage: `${config.prefix}unbind`,
     adminOnly: true,
     execute(msg, args) {

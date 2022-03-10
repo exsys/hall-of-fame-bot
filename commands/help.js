@@ -12,12 +12,15 @@ module.exports = {
             return;
         }
 
-        const cmdFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js") && file !== "help.js");
-        let msgEmbedText = "";
+        const cmdFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js") && file !== "help.js" && file !== "vote.js");
+        let msgEmbedTextAdmin = "";
         for (const file of cmdFiles) {
             const cmd = require(`./${file}`);
-            msgEmbedText += `\`${cmd.usage}\` ${cmd.description}\n`;
+            msgEmbedTextAdmin += `\`${cmd.usage}\` ${cmd.description}\n`;
         }
+
+        const voteCmd = require("./vote");
+        let msgEmbedTextNormal = `\`${voteCmd.usage}\` ${voteCmd.description}\n`;
 
         const thumbnail = new Discord.MessageAttachment("../assets/star.png", "star.png");
         const embed = new Discord.MessageEmbed({
@@ -33,8 +36,12 @@ module.exports = {
                     value: `All values have to be written without the [] brackets.\nTo get an id: right click element (e.g. message or role) and click "Copy ID".\n\`${config.prefix}${this.name}\` ${this.description}\n`
                 },
                 {
-                    name: "Commands",
-                    value: msgEmbedText
+                    name: "Admin commands",
+                    value: msgEmbedTextAdmin
+                },
+                {
+                    name: "Normal commands",
+                    value: msgEmbedTextNormal
                 }
             ],
             footer: { text: "Don't forget to drink water!" }

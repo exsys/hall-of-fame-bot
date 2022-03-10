@@ -8,7 +8,7 @@ const storage = require("../storage/storage.json");
 const msgPoster = require("../utils/message-poster");
 module.exports = {
     name: "vote",
-    description: "Starts a vote for a message. If enough votes have been collected the message will be included in the Hall of Fame.",
+    description: "Draws attention to a message so people can vote on it.",
     usage: `${config.prefix}vote [message id]`,
     adminOnly: false,
     async execute(msg, args) {
