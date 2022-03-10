@@ -14,7 +14,7 @@ To make the Bot work you need a config.json file in the root directory with foll
     "prefix": "!!",
     "reactions_needed": 2,
     "admins": [
-        "475003987540836393"
+        "123456789012345678"
     ]
 }
 ```
