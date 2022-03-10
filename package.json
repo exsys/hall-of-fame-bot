@@ -4,7 +4,9 @@
   "description": "Hall of Fame Bot that allows you to eternalise the messages of users in your server.",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "restart": "pm2 startOrRestart ecosystem.config.js",
+    "deploy": "pm2 deploy production"
   },
   "keywords": [],
   "author": "Exsys",
