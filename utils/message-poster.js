@@ -11,14 +11,28 @@ module.exports.postMessage = async (message) => {
     const hofChannel = await message.client.channels.fetch(config.hof_channel);
     const thumbnail = new Discord.MessageAttachment("../assets/star.png", "star.png");
 
-    // embed for hall of fame post
-    const embed = new Discord.MessageEmbed({
-        title: `Post by ${message.author.username}`,
-        color: [212, 175, 55],
-        author: { name: "Hall of Fame", iconURL: "attachment://star.png" },
-        thumbnail: { url: message.author.displayAvatarURL() },
-        description: message.content + "\n\n[Jump to original message](" + message.url + ")",
-    });
+    // embed for hall of fame post. if a image was included in that message include that picture also in the embed.
+    let embed;
+    if (message.attachments.size === 0) {
+        embed = new Discord.MessageEmbed({
+            title: `Post by ${message.author.username}`,
+            color: [212, 175, 55],
+            author: { name: "Hall of Fame", iconURL: "attachment://star.png" },
+            thumbnail: { url: message.author.displayAvatarURL() },
+            description: message.content + "\n\n[Jump to original message](" + message.url + ")",
+        });
+    } else {
+        const url = message.attachments.at(0).attachment;
+        embed = new Discord.MessageEmbed({
+            title: `Post by ${message.author.username}`,
+            color: [212, 175, 55],
+            author: { name: "Hall of Fame", iconURL: "attachment://star.png" },
+            thumbnail: { url: message.author.displayAvatarURL() },
+            description: message.content + "\n\n[Jump to original message](" + message.url + ")",
+            image: { url: url },
+        });
+    }
+    
 
     hofChannel.send({ embeds: [embed], files: [path.join(__dirname, "../assets/star.png")] });
 

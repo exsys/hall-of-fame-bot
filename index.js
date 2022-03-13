@@ -33,4 +33,4 @@ client.once("ready", bot => {
     console.log("Bot is running");
 });
 
-client.login(process.env.BOT_TOKEN);
+client.login(process.env.TEST_TOKEN);
