@@ -12,12 +12,17 @@ module.exports = {
     async execute(msgReaction, user) {
         if (msgReaction.emoji.name !== "⭐") return; // only check star reactions
         if (config.hof_channel && msgReaction.message.channel.id === config.hof_channel) return;
+        // in case reaction is partial, fetch full reaction first
+        if (msgReaction.partial) {
+            msgReaction = await msgReaction.fetch();
+        }
         const message = await msgReaction.message;
         const msgId = message.id;
 
         let reactionCount = msgReaction.count;
         // if for whatever unexpected reason msgReaction doesn't exist.
         if(!reactionCount) {
+            console.log(msgReaction);
             msgReaction.message.channel.send("Unknown error. Call Exsys and tell him he coded trash.");
             return;
         }
