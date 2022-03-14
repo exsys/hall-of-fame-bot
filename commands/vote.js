@@ -15,7 +15,7 @@ module.exports = {
         const hof_channel = config.hof_channel;
         // check if hall of fame channel was already created
         if (!hof_channel) {
-            msg.channel.send("No existing Hall of Fame channel found. Couldn't start vote.");
+            msg.channel.send("No existing Hall of Fame channel found. Please create it first.");
             return;
         }
         if (args.length !== 1) {
@@ -23,7 +23,6 @@ module.exports = {
             return;
         }
 
-        // react with star emoji
         try {
             var message = await msg.channel.messages.fetch(args[0]);
         } catch (error) {
@@ -44,25 +43,4 @@ module.exports = {
 
         msg.channel.send({ embeds: [embed], files: [path.join(__dirname, "../assets/star.png")] });
     }
-}
-
-async function checkIfAlreadyEnoughVotes(msg, args) {
-    const message = await msg.channel.messages.fetch(args[0]);
-    const reactions = await message.reactions.resolve("⭐");
-    if (!reactions) return false;
-
-    let reactionCount;
-    if (!reactions.partial) {
-        reactionCount = reactions.count;
-    } else {
-        const reaction = await message.reactions.resolve("⭐").fetch();
-        reactionCount = reaction.count;
-    }
-
-    if (reactionCount >= config.reactions_needed) {
-        msgPoster.postMessage(message);
-        return true;
-    }
-
-    return false;
 }

@@ -11,10 +11,16 @@ module.exports = {
     name: "messageReactionAdd",
     async execute(msgReaction, user) {
         if (msgReaction.emoji.name !== "⭐") return; // only check star reactions
-        if (config.hof_channel && msgReaction.message.channel.id === config.hof_channel) return;
+        if (config.hof_channel && msgReaction.message.channel.id === config.hof_channel) return; // ignore hall of fame channel
         // in case reaction is partial, fetch full reaction first
         if (msgReaction.partial) {
             msgReaction = await msgReaction.fetch();
+        }
+        // check if channel is blacklisted
+        if (storage.blacklist.length >= 1) {
+            if (storage.blacklist.some(channelId => channelId === msgReaction.message.channelId)) {
+                return;
+            }
         }
         const message = await msgReaction.message;
         const msgId = message.id;
