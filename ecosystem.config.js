@@ -6,7 +6,7 @@ module.exports = {
     deploy: {
       production: {
         user: "exsys",
-        host: "157.90.184.182 -p 42069",
+        host: "217.160.54.184 -p 42069",
         key: "~/.ssh/id_ed25519.pub",
         ref: "origin/main",
         repo: "git@github.com:exsyss/hall-of-fame-bot.git",
